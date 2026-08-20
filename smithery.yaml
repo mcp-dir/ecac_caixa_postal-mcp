@@ -1,0 +1,33 @@
+# Smithery configuration for ECAC: Caixa Postal
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_ecac_caixa_postal
+
+name: ecac_caixa_postal-mcp
+displayName: "ECAC: Caixa Postal"
+description: >
+  ECAC: Caixa Postal, consulta em fonte oficial. Hospedado pela plataforma, sem credenciais da plataforma, pague por consulta com crédito pré-pago.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/ecac_caixa_postal-mcp
+repository: https://github.com/mcp-dir/ecac_caixa_postal-mcp
+
+tags:
+  - ecac_caixa_postal
+  - brazil
+  - horizontal
+  - read-write
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_ecac_caixa_postal
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_ecac_caixa_postal/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
